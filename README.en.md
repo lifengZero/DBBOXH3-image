@@ -4,9 +4,6 @@
 
 For **Dangbei H3 / RK3566 / the corresponding Android 11 base firmware** only. Not compatible with H3S or other models.
 
-> **Flashing will erase data and Bluetooth pairings. Back up your data first.**
-> The firmware has passed offline checks but has not been tested on a physical device. Have the stock firmware ready for recovery before flashing.
-
 ## Features
 
 - Removes the stock launcher, media player, screensaver, OTA updater, factory testing tools, backup tools, and selected preinstalled apps.
