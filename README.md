@@ -14,29 +14,31 @@
 - 删除首次设置向导，初始化完成后直接进入 Aerial，遥控器和网络由用户自行设置。
 - 删除 HTML 查看器、声音选择器、备用拼音输入法；保留搜狗输入法和系统 WebView。
 - 首次启动默认关闭系统备份，失败下次重试；成功后不覆盖用户以后的备份设置。
+- 修复 Home 键触发后台清理时，缺失厂商名单组件导致的系统崩溃；名单不可用时跳过清理，继续移除 `DBdownloadrefs`。
+- 修复已复现的蓝牙播放队列空值崩溃：仅对蓝牙进程返回空列表，保留原厂蓝牙 APK、签名及 HID/音频功能。
 
 按要求保留：**原厂文件管理器、设置智能服务、最近任务界面、Rocky 语音服务**。
 
-预装应用：**Aerial、BV、当贝市场、LXTV（ARM64）、OK 影视、WebViewTV**。
+预装应用：**Aerial、BV、当贝市场、LXTV（ARM64）、影视 5.8.4（ARM64，`leanback-arm64_v8a.apk`）、WebViewTV**。新版影视替换原来的 OK 影视 5.1.6。
 
 ## 下载与校验
 
-固件通过 [GitHub Releases v1.1.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.1.0) 提供，大体积镜像不存入 Git 历史。
+固件通过 [GitHub Releases v1.2.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.2.0) 提供，大体积镜像不存入 Git 历史。旧版 v1.1.0 存在已知 Home 崩溃问题，请勿继续使用。
 
-1. 下载 `H3_RK3566_Android11_Aerial_CLEAN_STOCK_BOOT_ADB5555.img.gz`。
+1. 下载 `H3_RK3566_Android11_Aerial_HOME_BT_FIX_STOCK_BOOT_ADB5555.img.gz`。
 2. 使用 7-Zip 或其他支持 gzip 的工具解压，得到下方完整 `.img`；不要直接刷入 `.gz`。
 3. 使用同名 `.img.sha256` 核对解压后 IMG；另附 `.img.gz.sha256` 用于校验压缩包。
 
 解压后固件文件：
 
 ```text
-H3_RK3566_Android11_Aerial_CLEAN_STOCK_BOOT_ADB5555.img
+H3_RK3566_Android11_Aerial_HOME_BT_FIX_STOCK_BOOT_ADB5555.img
 ```
 
 IMG 的 SHA-256：
 
 ```text
-2d9903f19b5651bc70bcaa98b5936ea92a7f726f4682e2631f05cad35941bcde
+f11b3191ccbd2738f64f96209750fd777be4694a072aef545ea76bdbba9183f0
 ```
 
 ## 刷机方法
@@ -44,7 +46,7 @@ IMG 的 SHA-256：
 使用完整固件：
 
 ```text
-H3_RK3566_Android11_Aerial_CLEAN_STOCK_BOOT_ADB5555.img
+H3_RK3566_Android11_Aerial_HOME_BT_FIX_STOCK_BOOT_ADB5555.img
 ```
 
 1. 在 Windows 电脑上准备瑞芯微 USB 驱动和 RKDevTool。
@@ -77,5 +79,6 @@ adb shell bmgr enabled
 - **无线 ADB 无需认证。仅在隔离可信网络使用，不要开放到公网或安装不可信应用。**
 - 已删除的原厂服务可能影响部分投影设置、硬件联动和遥控器固件升级；保留相关应用不保证全部原厂功能正常。
 - 首次启动仍需初始化和安装应用，部分应用可能需要编译，请耐心等待。
-- 相同原厂 boot 基础版的软件重启实测约 17.2 秒；本次进一步删除 APK 的完整新包尚未实机刷写验证，不保证首次开机或断电冷启动耗时。
+- 本版通过 25 项回归测试、文件系统及镜像完整性校验，原厂蓝牙 APK 和全部 43 个系统 APK 与前一 HOMEFIX 内部构建逐字节一致；修复通过系统框架实现。
+- 相同原厂 boot 基础版的软件重启实测约 17.2 秒；**本次 Home＋蓝牙修复完整新包尚未实机刷写验证，遥控器长期稳定性仍待验证**，不保证首次开机或断电冷启动耗时。
 - Aerial 可用同包名、同签名且兼容 Android 11 的新版 APK 覆盖升级，无须重刷固件。

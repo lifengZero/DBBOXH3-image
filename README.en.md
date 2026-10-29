@@ -14,29 +14,31 @@ For **Dangbei H3 / RK3566 / the corresponding Android 11 base firmware** only. N
 - Removes the initial setup wizard and enters Aerial after initialization. Configure networking and pair the remote manually.
 - Removes HTML Viewer, Sound Picker, and the spare Pinyin keyboard. Sogou IME and system WebView are retained.
 - Disables system backup on the first successful startup, retrying failures without overriding later user changes.
+- Fixes the Home-triggered system crash caused by the removed OEM policy provider: skips background cleanup when either required list is unavailable, while keeping `DBdownloadrefs` removed.
+- Fixes the reproduced Bluetooth playback-queue null crash by returning an empty list only to the Bluetooth process. The original signed Bluetooth APK and HID/audio profiles are retained.
 
 Retained as requested: **the stock file manager, Settings Intelligence, the recent-tasks interface, and the Rocky voice service**.
 
-Preinstalled apps: **Aerial, BV, Dangbei Market, LXTV (ARM64), OK Video (OK 影视), and WebViewTV**.
+Preinstalled apps: **Aerial, BV, Dangbei Market, LXTV (ARM64), Video 5.8.4 (ARM64, `leanback-arm64_v8a.apk`), and WebViewTV**. The new Video APK replaces OK Video 5.1.6.
 
 ## Download and Verification
 
-The firmware is available from [GitHub Releases v1.1.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.1.0). Large firmware images are not stored in Git history.
+The firmware is available from [GitHub Releases v1.2.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.2.0). Large firmware images are not stored in Git history. Version v1.1.0 has a known Home-triggered crash and should no longer be used.
 
-1. Download `H3_RK3566_Android11_Aerial_CLEAN_STOCK_BOOT_ADB5555.img.gz`.
+1. Download `H3_RK3566_Android11_Aerial_HOME_BT_FIX_STOCK_BOOT_ADB5555.img.gz`.
 2. Extract it with 7-Zip or another gzip-compatible tool to obtain the complete `.img` below. Do not flash the `.gz` directly.
 3. Verify the extracted IMG against the matching `.img.sha256` file. A separate `.img.gz.sha256` verifies the compressed archive.
 
 Extracted firmware file:
 
 ```text
-H3_RK3566_Android11_Aerial_CLEAN_STOCK_BOOT_ADB5555.img
+H3_RK3566_Android11_Aerial_HOME_BT_FIX_STOCK_BOOT_ADB5555.img
 ```
 
 IMG SHA-256:
 
 ```text
-2d9903f19b5651bc70bcaa98b5936ea92a7f726f4682e2631f05cad35941bcde
+f11b3191ccbd2738f64f96209750fd777be4694a072aef545ea76bdbba9183f0
 ```
 
 ## Flashing Instructions
@@ -44,7 +46,7 @@ IMG SHA-256:
 Use the complete firmware image:
 
 ```text
-H3_RK3566_Android11_Aerial_CLEAN_STOCK_BOOT_ADB5555.img
+H3_RK3566_Android11_Aerial_HOME_BT_FIX_STOCK_BOOT_ADB5555.img
 ```
 
 1. Prepare the Rockchip USB driver and RKDevTool on a Windows PC.
@@ -77,5 +79,6 @@ After initial setup, backup should report `Backup Manager currently disabled`.
 - **Wireless ADB has no authentication. Use only on isolated, trusted networks. Do not expose it to the internet or install untrusted apps.**
 - Removed OEM services may affect projector settings, hardware integrations, and remote firmware updates. Retaining related apps does not guarantee every OEM feature works.
 - Initial setup and app installation are still required on first boot. Some apps may need compilation; please be patient.
-- The same stock-boot base previously completed a software reboot in about 17.2 seconds. This new image with further APK removals has not been flashed and tested; first-boot and cold-start times are not guaranteed.
+- This version passed 25 regression tests plus filesystem and firmware integrity checks. The original Bluetooth APK and all 43 system APKs are byte-identical to the preceding internal HOMEFIX build; the fixes are implemented in the system framework.
+- The same stock-boot base previously completed a software reboot in about 17.2 seconds. **This combined Home/Bluetooth-fix image has not been flashed and tested; long-term remote stability remains unverified.** First-boot and cold-start times are not guaranteed.
 - Aerial can be updated by installing a newer APK with the same package name and signing certificate that is compatible with Android 11. Reflashing is not required.
