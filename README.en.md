@@ -2,7 +2,7 @@
 
 [简体中文](README.md) | **English**
 
-For **Dangbei H3 / RK3566 / the corresponding Android 11 base firmware** only. Not compatible with H3S or other models. **Successfully flashed and verified on a device; reported working normally.**
+Compatibility: **Successfully flashed and verified on the Dangbei H3 box; reported working normally. H3S box compatibility is unverified; flashing it is not recommended yet.** This firmware is based on the corresponding H3 / RK3566 / Android 11 base firmware and is not intended for other models.
 
 ## Removed and Retained
 
