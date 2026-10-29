@@ -1,4 +1,4 @@
-# 当贝 H3 精简固件
+# 当贝 H3 精简固件（原厂 boot 版）
 
 **简体中文** | [English](README.en.md)
 
@@ -8,25 +8,35 @@
 
 - 精简原厂桌面、播放器、屏保、OTA、工厂测试、备份及部分预装应用。
 - 默认使用 Aerial，取消桌面白名单，可自行更换其他兼容桌面。
-- 自动授权 root，无须手动确认；底层保留 Magisk/Kitsune，管理器默认禁用。
+- 使用原厂未修改的 boot。
 - 无线 ADB 持续开启，端口 `5555`，无需认证。
-- 框架和 Aerial 已预编译，替换静音开机动画，优化启动及 Home 键重复激活逻辑。
-- 保留蓝牙遥控器配对、首次设置向导和系统 WebView。
+- 使用静态静音开机图，关闭窗口动画，保留 Home 键重复激活防护。
+- 删除首次设置向导，初始化完成后直接进入 Aerial，遥控器和网络由用户自行设置。
+- 删除 HTML 查看器、声音选择器、备用拼音输入法；保留搜狗输入法和系统 WebView。
+- 首次启动默认关闭系统备份，失败下次重试；成功后不覆盖用户以后的备份设置。
+
+按要求保留：**原厂文件管理器、设置智能服务、最近任务界面、Rocky 语音服务**。
 
 预装应用：**Aerial、BV、当贝市场、LXTV（ARM64）、OK 影视、WebViewTV**。
 
 ## 下载与校验
 
-固件体积较大，通过 [GitHub Releases](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.0.0) 提供，不存放在 Git 仓库中。
+固件通过 [GitHub Releases v1.1.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.1.0) 提供，大体积镜像不存入 Git 历史。
 
-1. 下载 Release 中的 `H3_RK3566_Android11_Aerial_AOT_AUTO_ROOT_ADB5555.img.gz`。
-2. 使用 7-Zip 或其他支持 gzip 的工具解压，得到完整的 `.img` 文件；不要直接刷入 `.gz` 文件。
-3. 使用仓库或 Release 中的同名 `.img.sha256` 文件核对解压后 IMG 的 SHA-256。Release 另提供 `.img.gz.sha256`，用于校验压缩包。
+1. 下载 `H3_RK3566_Android11_Aerial_CLEAN_STOCK_BOOT_ADB5555.img.gz`。
+2. 使用 7-Zip 或其他支持 gzip 的工具解压，得到下方完整 `.img`；不要直接刷入 `.gz`。
+3. 使用同名 `.img.sha256` 核对解压后 IMG；另附 `.img.gz.sha256` 用于校验压缩包。
 
-解压后 IMG 的 SHA-256：
+解压后固件文件：
 
 ```text
-f996379a140d8a2b6e3c3b5e9b10bd80d1f18c7a9cf21dd3674470712f181f3e
+H3_RK3566_Android11_Aerial_CLEAN_STOCK_BOOT_ADB5555.img
+```
+
+IMG 的 SHA-256：
+
+```text
+2d9903f19b5651bc70bcaa98b5936ea92a7f726f4682e2631f05cad35941bcde
 ```
 
 ## 刷机方法
@@ -34,16 +44,22 @@ f996379a140d8a2b6e3c3b5e9b10bd80d1f18c7a9cf21dd3674470712f181f3e
 使用完整固件：
 
 ```text
-H3_RK3566_Android11_Aerial_AOT_AUTO_ROOT_ADB5555.img
+H3_RK3566_Android11_Aerial_CLEAN_STOCK_BOOT_ADB5555.img
 ```
 
 1. 在 Windows 电脑上准备瑞芯微 USB 驱动和 RKDevTool。
 2. 通过 USB 连接设备，按设备原有线刷方法进入 **Loader 模式**。
 3. 确认工具识别到设备，在 **“升级固件”** 中加载上述 IMG，执行升级。
 4. 等待升级成功后重启，刷写期间不要断电或拔线。
-5. 首次开机完成蓝牙遥控器配对和网络设置，等待应用安装完成后进入 Aerial。
+5. 首次开机等待初始化及应用安装完成，直接进入 Aerial，再自行设置网络并配对遥控器。
 
-**这是完整升级包，不要当作 boot 分区镜像写入，也不需要额外刷入 boot 或手动授权 root。**
+**这是完整升级包，不要当作 boot 分区镜像写入，也不需要额外刷入 boot。刷机会清除用户数据和蓝牙配对，提前备份并准备原厂固件回退。**
+
+## 遥控器配对
+
+**同时按住遥控器的 Home 键和设置键，听到“滴”声后松手，等待配对完成。**
+
+本版没有首次设置向导；如需进入蓝牙设置且遥控器尚不可用，可先连接 USB 鼠标或键盘。
 
 ## 无线 ADB
 
@@ -51,13 +67,15 @@ H3_RK3566_Android11_Aerial_AOT_AUTO_ROOT_ADB5555.img
 
 ```bash
 adb connect 192.168.1.100:5555
-adb shell su -c id
+adb shell bmgr enabled
 ```
 
-root 正常时，输出包含 `uid=0(root)`。
+首次初始化完成后，备份预期显示 `Backup Manager currently disabled`。
 
 ## 注意事项
 
-- **所有应用申请 root 都会自动允许，无线 ADB 也没有认证。仅在可信网络使用，不要开放到公网或安装不可信应用。**
+- **无线 ADB 无需认证。仅在隔离可信网络使用，不要开放到公网或安装不可信应用。**
+- 已删除的原厂服务可能影响部分投影设置、硬件联动和遥控器固件升级；保留相关应用不保证全部原厂功能正常。
 - 首次启动仍需初始化和安装应用，部分应用可能需要编译，请耐心等待。
+- 相同原厂 boot 基础版的软件重启实测约 17.2 秒；本次进一步删除 APK 的完整新包尚未实机刷写验证，不保证首次开机或断电冷启动耗时。
 - Aerial 可用同包名、同签名且兼容 Android 11 的新版 APK 覆盖升级，无须重刷固件。
