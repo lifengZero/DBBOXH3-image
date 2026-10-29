@@ -17,10 +17,10 @@
 
 ## 下载与刷机
 
-从 [Releases v1.2.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.2.0) 下载固件：
+从 [Releases v1.3.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.3.0) 下载固件：
 
 ```text
-H3_RK3566_Android11_Aerial_HOME_BT_FIX_STOCK_BOOT_ADB5555.img.gz
+H3_RK3566_Android11_Aerial_MAINTENANCE_MARKET_STOCK_BOOT_ADB5555.img.gz
 ```
 
 1. 解压 `.gz` 得到完整 `.img`，可用随附的 `.sha256` 文件校验。
