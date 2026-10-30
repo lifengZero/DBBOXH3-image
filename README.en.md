@@ -17,10 +17,10 @@ For **Dangbei H3 / H3S boxes. Both models have been successfully flashed and ver
 
 ## Download and Flash
 
-Download the firmware from [Releases v1.3.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.3.0):
+Download the firmware from [Releases v1.4.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.4.0):
 
 ```text
-H3_RK3566_Android11_Aerial_MAINTENANCE_MARKET_STOCK_BOOT_ADB5555.img.gz
+H3_RK3566_Android11_Aerial_MAINTENANCE_INSTALL_STOCK_BOOT_ADB5555.img.gz
 ```
 
 1. Extract the `.gz` to obtain the complete `.img`. Use the included `.sha256` files to verify your download.
