@@ -2,29 +2,40 @@
 
 **简体中文** | [English](README.en.md)
 
-适用于 **当贝 H3 / H3S 盒子，均已实机刷写验证，使用正常。** 当前固件基于 H3 / RK3566 / Android 11 对应基础固件，不适用于其他型号。
-
-## 精简内容
-
-- 删除原厂桌面、播放器、屏保、OTA、首次设置向导、工厂测试、备份工具及部分当贝预装服务。
-- 删除 HTML 查看器、声音选择器和备用拼音输入法，保留搜狗输入法、系统 WebView、蓝牙及遥控器配对功能。
-- 保留原厂文件管理器、设置智能服务、最近任务界面和 Rocky 语音服务。
-- 默认进入 Aerial 桌面，使用静音开机图、关闭窗口动画，首次启动默认关闭系统备份。
+适用于 **当贝 H3** 盒子（RK3566 / Android 11），不适用于其他型号。
 
 ## 预装应用
 
-**Aerial、BV、当贝市场、LXTV（ARM64）、影视 5.8.4（ARM64）、WebViewTV。**
+- CleanYourTV 桌面（已开启应用库和系统状态显示）
+- 影视 5.8.7（ARM64）
+- BV
+- 洛雪音乐（LXTV，ARM64）
+- WebViewTV
+- LeanCast（开机自启）
+- TVFileBox（文件管理，已授予安装应用权限）
+
+## 已删除的应用
+
+- 当贝市场
+- 当贝文件管理器
+- Rocky 语音服务
+- 设置智能服务（SettingsIntelligence）
+- 联系人存储（ContactsProvider）
+- 用户词典存储（UserDictionaryProvider）
+- VPN 对话框（VpnDialogs）
+- SecureElement、CompanionDeviceManager、CaptivePortalLogin、PacProcessor、ProxyHandler、StatementService
+- 首次启动时卸载：launcher3.guide、andes、etna.sample、leradwatcher、ota3435、needle、projector.direction、zhushou.os、dbmusic.tab、dbdownloadrefs
 
 ## 下载与刷机
 
-从 [Releases v1.4.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.4.0) 下载固件：
+从 [Releases v1.5.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.5.0) 下载固件：
 
 ```text
-H3_RK3566_Android11_Aerial_MAINTENANCE_INSTALL_STOCK_BOOT_ADB5555.img.gz
+H3_RK3566_Android11_CleanYourTV_CURRENT_NOWIPE_ADB5555.img.gz
 ```
 
 1. 解压 `.gz` 得到完整 `.img`，可用随附的 `.sha256` 文件校验。
-2. 在 Windows 电脑安装瑞芯微 USB 驱动，准备 RKDevTool。
+2. 在电脑安装瑞芯微 USB 驱动，准备 RKDevTool（macOS 可用 `upgrade_tool`）。
 3. 通过 USB 连接盒子，按原有线刷方法进入 **Loader 模式**。
 4. 在 RKDevTool 的 **“升级固件”** 中加载解压后的 IMG，执行升级。
 5. 等待升级成功后重启，首次开机等待应用安装完成，再设置网络、配对遥控器。

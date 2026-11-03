@@ -2,29 +2,40 @@
 
 [简体中文](README.md) | **English**
 
-For **Dangbei H3 / H3S boxes. Both models have been successfully flashed and verified; reported working normally.** This firmware is based on the corresponding H3 / RK3566 / Android 11 base firmware and is not intended for other models.
-
-## Removed and Retained
-
-- Removes the stock launcher, media player, screensaver, OTA updater, initial setup wizard, factory testing tools, backup tools, and selected Dangbei services.
-- Removes HTML Viewer, Sound Picker, and the spare Pinyin keyboard. Retains Sogou IME, system WebView, Bluetooth, and remote pairing.
-- Retains the stock file manager, Settings Intelligence, recent-tasks interface, and Rocky voice service.
-- Boots into Aerial, uses a silent boot image, disables window animations, and defaults system backup to off on first startup.
+For the **Dangbei H3** box (RK3566 / Android 11). Not intended for other models.
 
 ## Preinstalled Apps
 
-**Aerial, BV, Dangbei Market, LXTV (ARM64), Video 5.8.4 (ARM64), and WebViewTV.**
+- CleanYourTV launcher (app library and system status enabled)
+- Video 5.8.7 (ARM64)
+- BV
+- LXTV music (ARM64)
+- WebViewTV
+- LeanCast (starts on boot)
+- TVFileBox (file manager, allowed to install packages)
+
+## Removed Apps
+
+- Dangbei Market
+- Dangbei File Manager
+- Rocky voice service
+- Settings Intelligence
+- Contacts Provider
+- User Dictionary Provider
+- VPN Dialogs
+- SecureElement, CompanionDeviceManager, CaptivePortalLogin, PacProcessor, ProxyHandler, StatementService
+- Uninstalled on first boot: launcher3.guide, andes, etna.sample, leradwatcher, ota3435, needle, projector.direction, zhushou.os, dbmusic.tab, dbdownloadrefs
 
 ## Download and Flash
 
-Download the firmware from [Releases v1.4.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.4.0):
+Download the firmware from [Releases v1.5.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.5.0):
 
 ```text
-H3_RK3566_Android11_Aerial_MAINTENANCE_INSTALL_STOCK_BOOT_ADB5555.img.gz
+H3_RK3566_Android11_CleanYourTV_CURRENT_NOWIPE_ADB5555.img.gz
 ```
 
 1. Extract the `.gz` to obtain the complete `.img`. Use the included `.sha256` files to verify your download.
-2. Install the Rockchip USB driver and prepare RKDevTool on a Windows PC.
+2. Install the Rockchip USB driver and prepare RKDevTool on your computer (`upgrade_tool` works on macOS).
 3. Connect the box via USB and enter **Loader mode** using its usual USB flashing procedure.
 4. Load the extracted IMG under **Upgrade Firmware** in RKDevTool and start the upgrade.
 5. Reboot after the upgrade succeeds. Wait for first-boot app installation, then configure networking and pair the remote.
