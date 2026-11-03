@@ -24,11 +24,10 @@ For the **Dangbei H3** box (RK3566 / Android 11). Not intended for other models.
 - User Dictionary Provider
 - VPN Dialogs
 - SecureElement, CompanionDeviceManager, CaptivePortalLogin, PacProcessor, ProxyHandler, StatementService
-- Uninstalled on first boot: launcher3.guide, andes, etna.sample, leradwatcher, ota3435, needle, projector.direction, zhushou.os, dbmusic.tab, dbdownloadrefs
 
 ## Download and Flash
 
-Download the firmware from [Releases v1.6.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.6.0):
+Download the firmware from [Releases v1.6.1](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.6.1):
 
 ```text
 H3_RK3566_Android11_CleanYourTV_ADB5555.img.gz

@@ -24,11 +24,10 @@
 - 用户词典存储（UserDictionaryProvider）
 - VPN 对话框（VpnDialogs）
 - SecureElement、CompanionDeviceManager、CaptivePortalLogin、PacProcessor、ProxyHandler、StatementService
-- 首次启动时卸载：launcher3.guide、andes、etna.sample、leradwatcher、ota3435、needle、projector.direction、zhushou.os、dbmusic.tab、dbdownloadrefs
 
 ## 下载与刷机
 
-从 [Releases v1.6.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.6.0) 下载固件：
+从 [Releases v1.6.1](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.6.1) 下载固件：
 
 ```text
 H3_RK3566_Android11_CleanYourTV_ADB5555.img.gz
