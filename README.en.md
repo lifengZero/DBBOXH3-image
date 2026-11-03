@@ -1,8 +1,8 @@
-# Dangbei H3 Debloated Firmware
+# Dangbei H3 / H3S Debloated Firmware
 
 [简体中文](README.md) | **English**
 
-For the **Dangbei H3** box (RK3566 / Android 11). Not intended for other models.
+For the **Dangbei H3 and H3S** boxes (RK3566 / Android 11). Not intended for other models.
 
 ## Preinstalled Apps
 
