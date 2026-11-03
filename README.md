@@ -28,10 +28,10 @@
 
 ## 下载与刷机
 
-从 [Releases v1.5.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.5.0) 下载固件：
+从 [Releases v1.6.0](https://github.com/lifengZero/DBBOXH3-image/releases/tag/v1.6.0) 下载固件：
 
 ```text
-H3_RK3566_Android11_CleanYourTV_CURRENT_NOWIPE_ADB5555.img.gz
+H3_RK3566_Android11_CleanYourTV_ADB5555.img.gz
 ```
 
 1. 解压 `.gz` 得到完整 `.img`，可用随附的 `.sha256` 文件校验。
@@ -40,7 +40,7 @@ H3_RK3566_Android11_CleanYourTV_CURRENT_NOWIPE_ADB5555.img.gz
 4. 在 RKDevTool 的 **“升级固件”** 中加载解压后的 IMG，执行升级。
 5. 等待升级成功后重启，首次开机等待应用安装完成，再设置网络、配对遥控器。
 
-**刷机会清除用户数据和蓝牙配对，请提前备份并保留原厂固件。不要直接刷入 `.gz`，不要当作 boot 分区镜像写入，刷写期间不要断电或拔线。**
+**刷机时会自动格式化数据分区，清除所有用户数据和蓝牙配对，首次开机会重新预装应用。请提前备份并保留原厂固件。不要直接刷入 `.gz`，不要当作 boot 分区镜像写入，刷写期间不要断电或拔线。**
 
 ## 遥控器配对
 
